@@ -53,13 +53,16 @@ class Sender:
             await self._task
     
     def start_action(self, action: _BaseAction = None):
-        if hasattr(action, "remove"):
-            self.single_actions.append(action)
-        else:
-            key = str(action.key)
-            if key in self.persistent_actions:
-                self.stop_action(key)
-            self.persistent_actions[key] = action
+        key = str(action.key) #get key
+
+        if key in self.persistent_actions:
+            self.stop_action(key)
+        
+        if hasattr(action, "remove"): #if action has remove attribute
+            self.single_actions.append(action) #add to single actions
+
+        else: #if action is persistent (aka no remove attribute)
+            self.persistent_actions[key] = action #add to persistent actions
 
     def stop_action(self, key):
         key = str(key)
@@ -68,22 +71,18 @@ class Sender:
 
 #==================== KEYBOARD ====================#
 class KeySender(Sender):
-    def __init__(self, tick_rate: float = 0.1):
-        super().__init__(tick_rate)
 
     # Predefined Actions
     def press(self, key): self.start_action(Key_SingleAction_Press(key))
     def hold(self, key): self.start_action(Key_PersistentAction_Hold(key))
-    def release(self, key): self.stop_action(key)
+    def release(self, key): self.start_action(Key_SingleAction_Release(key))
     def spam(self, key): self.start_action(Key_PersistentAction_Spam(key))
 
 #==================== MOUSE ====================#
 class MouseSender(Sender):
-    def __init__(self, tick_rate: float = 0.1):
-        super().__init__(tick_rate)
 
     # Predefined Actions
     def click(self, key): self.start_action(Mouse_SingleAction_Click(key))
     def hold(self, key): self.start_action(Mouse_PersistentAction_Hold(key))
-    def release(self, key): self.stop_action(key)
+    def release(self, key): self.start_action(Mouse_SingleAction_Release(key))
     def spam(self, key): self.start_action(Mouse_PersistentAction_Spam(key))

@@ -2,10 +2,11 @@ import asyncio
 from pynput import keyboard, mouse
 
 class KeyListener:
-    def __init__(self):
+    def __init__(self, debug=False):
         self._running = False
         self._task = None
         self.key_bindings = {}  # keybindings storage
+        self.debug = debug
         
         self._listener = keyboard.Listener(  # Create a listener object
             on_press=lambda key: self.on_key(key, True),
@@ -14,6 +15,7 @@ class KeyListener:
 
     def on_key(self, key, pressed):
         """Handles key events, checking if a function is bound to the key."""
+        if self.debug: print(f"Key {key} {'pressed' if pressed else 'released'}") #Debug print
         if key in self.key_bindings and pressed:  # Only trigger on key press
             try:
                 self.key_bindings[key]()  # Call the bound function

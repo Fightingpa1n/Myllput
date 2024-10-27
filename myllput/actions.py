@@ -15,21 +15,24 @@ class _KeyAction(_BaseAction):  # Base class for key actions
     async def execute(self, controller: KeyboardController): pass
 
 class Key_SingleAction_Press(_KeyAction):  # Press a key once
-    def __init__(self, key):
-        super().__init__(key)
-        self.remove = False
-
+    remove = False
     async def execute(self, controller: KeyboardController):
         controller.press(self.key)
         await asyncio.sleep(KEY_PRESS_DURATION)
         controller.release(self.key)
         self.remove = True
 
-class Key_PersistentAction_Hold(_KeyAction):  # Hold a key down
+class Key_PersistentAction_Hold(_KeyAction):  #Hold a key down
     async def execute(self, controller: KeyboardController):
         controller.press(self.key)
 
-class Key_PersistentAction_Spam(_KeyAction):  # Spam a key
+class Key_SingleAction_Release(_KeyAction):  #Release a key
+    remove = False
+    async def execute(self, controller: KeyboardController):
+        controller.release(self.key)
+        self.remove = True
+
+class Key_PersistentAction_Spam(_KeyAction):  #Spam a key
     async def execute(self, controller: KeyboardController):
         controller.press(self.key)
         await asyncio.sleep(KEY_PRESS_DURATION)
@@ -40,10 +43,7 @@ class _MouseAction(_BaseAction):  # Base class for mouse actions
     async def execute(self, controller: MouseController): pass
 
 class Mouse_SingleAction_Click(_MouseAction):  # Click a mouse button once
-    def __init__(self, key):
-        super().__init__(key)
-        self.remove = False
-
+    remove = False
     async def execute(self, controller: MouseController):
         controller.click(self.key)
         self.remove = True
@@ -51,6 +51,12 @@ class Mouse_SingleAction_Click(_MouseAction):  # Click a mouse button once
 class Mouse_PersistentAction_Hold(_MouseAction):  # Hold a mouse button down
     async def execute(self, controller: MouseController):
         controller.press(self.key)
+
+class Mouse_SingleAction_Release(_MouseAction):  # Release a mouse button
+    remove = False
+    async def execute(self, controller: MouseController):
+        controller.release(self.key)
+        self.remove = True
 
 class Mouse_PersistentAction_Spam(_MouseAction):  # Spam a mouse button
     async def execute(self, controller: MouseController):
