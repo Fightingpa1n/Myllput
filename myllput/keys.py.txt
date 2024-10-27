@@ -1,0 +1,152 @@
+from enum import Enum
+from pynput.keyboard import Key, KeyCode
+
+__all__ = ["KeyCode"] #export the KeyCode class
+
+
+#========= Main Keys =========#
+#==== Letters ====#
+a = KeyCode.from_char('a') #a
+b = KeyCode.from_char('b') #b
+c = KeyCode.from_char('c') #c
+d = KeyCode.from_char('d') #d
+e = KeyCode.from_char('e') #e
+f = KeyCode.from_char('f') #f
+g = KeyCode.from_char('g') #g
+h = KeyCode.from_char('h') #h
+i = KeyCode.from_char('i') #i
+j = KeyCode.from_char('j') #j
+k = KeyCode.from_char('k') #k
+l = KeyCode.from_char('l') #l
+m = KeyCode.from_char('m') #m
+n = KeyCode.from_char('n') #n
+o = KeyCode.from_char('o') #o
+p = KeyCode.from_char('p') #p
+q = KeyCode.from_char('q') #q
+r = KeyCode.from_char('r') #r
+s = KeyCode.from_char('s') #s
+t = KeyCode.from_char('t') #t
+u = KeyCode.from_char('u') #u
+v = KeyCode.from_char('v') #v
+w = KeyCode.from_char('w') #w
+x = KeyCode.from_char('x') #x
+y = KeyCode.from_char('y') #y
+z = KeyCode.from_char('z') #z
+
+#==== Numbers ====#
+zero = KeyCode.from_char('0') #0
+one = KeyCode.from_char('1') #1
+two = KeyCode.from_char('2') #2
+three = KeyCode.from_char('3') #3
+four = KeyCode.from_char('4') #4
+five = KeyCode.from_char('5') #5
+six = KeyCode.from_char('6') #6
+seven = KeyCode.from_char('7') #7
+eight = KeyCode.from_char('8') #8
+nine = KeyCode.from_char('9') #9
+
+#TODO: add Symbols (sometime in the future)
+#TODO: add Numpad keys (sometime in the future)
+
+#========= Special Keys =========#
+#==== Main ====#
+space = Key.space #space key
+enter = Key.enter #enter key
+esc = Key.esc #esc key
+tab = Key.tab #tab key
+backspace = Key.backspace #backspace key
+
+#==== Arrows ====#
+up = Key.up #up arrow key
+down = Key.down #down arrow key
+left = Key.left #left arrow key
+right = Key.right #right arrow key
+
+#==== Editing/Navigation ====#
+delete = Key.delete #delete key
+insert = Key.insert #insert key
+home = Key.home #home key
+end = Key.end #end key
+page_up = Key.page_up #page up key
+page_down = Key.page_down #page down key
+
+
+#========= Modifiers =========#
+#==== Shift ====#
+shift = Key.shift #generic shift key
+shift_l = Key.shift_l #left shift key
+shift_r = Key.shift_r #right shift key
+
+#==== Ctrl ====#
+ctrl = Key.ctrl #generic ctrl key
+ctrl_l = Key.ctrl_l #left ctrl key
+ctrl_r = Key.ctrl_r #right ctrl key
+
+#==== Alt ====#
+alt = Key.alt #generic alt key
+alt_l = Key.alt_l #left alt key
+alt_r = Key.alt_r #right alt key
+alt_gr = Key.alt_gr #alt gr key
+
+
+#========= Function Keys =========#
+f1 = Key.f1
+f2 = Key.f2
+f3 = Key.f3
+f4 = Key.f4
+f5 = Key.f5
+f6 = Key.f6
+f7 = Key.f7
+f8 = Key.f8
+f9 = Key.f9
+f10 = Key.f10
+f11 = Key.f11
+f12 = Key.f12
+f13 = Key.f13
+f14 = Key.f14
+f15 = Key.f15
+f16 = Key.f16
+f17 = Key.f17
+f18 = Key.f18
+f19 = Key.f19
+f20 = Key.f20
+
+
+#========= System/Platform Keys =========# (bassically just a bunch of repeats of the same key, but with different names to accomodate for different naming per platform)
+idk = Key.cmd #generic "Idk a good name to encompase all of these keys into one" key
+idk_l = Key.cmd_l #left "Idk a good name to encompase all of these keys into one" key
+idk_r = Key.cmd_r #right "Idk a good name to encompase all of these keys into one" key
+
+#==== Super ====#
+spr = Key.cmd #generic super key
+spr_l = Key.cmd_l #left super key
+spr_r = Key
+
+#==== Windows ====#
+win = Key.cmd #generic windows key
+win_l = Key.cmd_l #left windows key
+win_r = Key.cmd_r #right windows key
+
+#==== Command ====#
+cmd = Key.cmd #generic command key
+cmd_l = Key.cmd_l #left command key
+cmd_r = Key.cmd_r #right command key
+
+
+#========= Other Keys =========#
+#==== Locks ====#
+caps_lock = Key.caps_lock #caps lock
+num_lock = Key.num_lock #num lock
+scroll_lock = Key.scroll_lock #idk what this is
+
+#==== Media ====#
+media_play_pause = Key.media_play_pause #play/pause
+media_previous = Key.media_previous #previous track
+media_next = Key.media_next #next track
+media_volume_up = Key.media_volume_up #volume up
+media_volume_down = Key.media_volume_down #volume down
+media_volume_mute = Key.media_volume_mute #mute
+
+#==== Other ====#
+print_screen = Key.print_screen #screenshot i think idk
+pause = Key.pause #idk
